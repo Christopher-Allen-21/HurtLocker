@@ -27,19 +27,19 @@ public class RegExRunner {
 
 
         for(int i=0;i<kvPairsList.size();i++){
-            //if name is null
+            //if name is null increment count of errors
             if(identifyName(kvPairsList.get(i))==null){
-                //INCREMENT COUNT OF ERRORS
                 jerkSONsList.get(4).incrementTotalCount();
             }
+
             for(int j=0;j<jerkSONsList.size();j++){
                 //identify which jerkSON to check against
                 if(identifyName(kvPairsList.get(i))!=null && identifyName(kvPairsList.get(i)).equals(jerkSONsList.get(j).getName())){
-                    //if null price then add to errors
+                    //if price is null then increment count of errors
                     if(identifyPrice(kvPairsList.get(i))==null){
                         jerkSONsList.get(4).incrementTotalCount();
                     }
-                    //if no prices add the price
+                    //if no prices in list, add new price
                     else if(jerkSONsList.get(j).getPricesCount().size() == 0){
                         jerkSONsList.get(j).incrementTotalCount();
                         jerkSONsList.get(j).addNewPrice(identifyPrice(kvPairsList.get(i)));
@@ -50,13 +50,13 @@ public class RegExRunner {
                         Map<String,Integer> pricesCount = jerkSONsList.get(j).getPricesCount();
                         boolean priceFound = false;
                         for(String p : pricesCount.keySet()){
-                            //if price found increment count of times price was seen
+                            //if price found, increment count of times price was seen
                             if(p.equals(identifyPrice(kvPairsList.get(i)))){
                                 priceFound = true;
                                 jerkSONsList.get(j).incrementExistingPrice(identifyPrice(kvPairsList.get(i)));
                             }
                         }
-                        //if price not found then add the price
+                        //if price not found then add new price
                         if(!priceFound){
                             jerkSONsList.get(j).addNewPrice(identifyPrice(kvPairsList.get(i)));
                         }
