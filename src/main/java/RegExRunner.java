@@ -29,7 +29,6 @@ public class RegExRunner {
 
 
     public FoodName identifyName(String string){
-
         for(FoodName name : FoodName.values()){
             Pattern pattern = Pattern.compile(name.label,Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(string);
@@ -38,11 +37,17 @@ public class RegExRunner {
                 return name;
             }
         }
-
         return null;
     }
 
-
+    public String identifyPrice(String string){
+        Pattern pattern = Pattern.compile("\\d{1}\\.\\d{2}");
+        Matcher matcher = pattern.matcher(string);
+        if(matcher.find()){
+            return matcher.group();
+        }
+        return null;
+    }
 
 
 
