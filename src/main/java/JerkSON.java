@@ -5,6 +5,7 @@ public class JerkSON {
     String name;
     Integer totalCount=0;
     List<String> prices = new ArrayList<>();
+    Map<String,Integer> pricesCount = new HashMap<>();
 
     public JerkSON(){
 
@@ -30,14 +31,41 @@ public class JerkSON {
         return prices;
     }
 
+    public Map<String,Integer> getPricesCount(){
+        return pricesCount;
+    }
+
+    public void addNewPrice(String price){
+        pricesCount.put(price,1);
+    }
+
+    public void incrementExistingPrice(String price){
+        pricesCount.put(price,pricesCount.get(price)+1);
+    }
+
+
+
+//    @Override
+//    public String toString(){
+//        StringBuilder sb =  new StringBuilder();
+//
+//        sb.append("\n\nname: "+getName()+"\t\tseen: "+totalCount+" times").append("\n=============\t\t=============");
+//        for(String p : prices){
+//            sb.append("\nPrice: "+p);
+//        }
+//
+//        return sb.toString();
+//    }
+
     @Override
     public String toString(){
         StringBuilder sb =  new StringBuilder();
 
         sb.append("\n\nname: "+getName()+"\t\tseen: "+totalCount+" times").append("\n=============\t\t=============");
-        for(String p : prices){
-            sb.append("\nPrice: "+p);
+        for(String p : pricesCount.keySet()){
+            sb.append("\nPrice: "+p+"\t\tseen: "+pricesCount.get(p));
         }
+        sb.append("\n_____________\t\t_____________");
 
         return sb.toString();
     }
