@@ -12,7 +12,6 @@ public class RegExRunner {
 
     public RegExRunner(String string){
         this.string = string;
-
     }
 
 
@@ -41,9 +40,8 @@ public class RegExRunner {
                         jerkSONsList.get(4).incrementTotalCount();
                     }
                     //if no prices add the price
-                    else if(jerkSONsList.get(j).getPrices().size() == 0){
+                    else if(jerkSONsList.get(j).getPricesCount().size() == 0){
                         jerkSONsList.get(j).incrementTotalCount();
-                        jerkSONsList.get(j).addPrice(identifyPrice(kvPairsList.get(i)));
                         jerkSONsList.get(j).addNewPrice(identifyPrice(kvPairsList.get(i)));
                     }
                     //check if price already exists
@@ -54,7 +52,6 @@ public class RegExRunner {
                         for(String p : pricesCount.keySet()){
                             //if price found increment count of times price was seen
                             if(p.equals(identifyPrice(kvPairsList.get(i)))){
-                                //increment count of that price somehow
                                 priceFound = true;
                                 jerkSONsList.get(j).incrementExistingPrice(identifyPrice(kvPairsList.get(i)));
                             }
