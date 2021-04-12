@@ -5,15 +5,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 public class RegExRunner {
     String string;
 
     public RegExRunner(String string){
         this.string = string;
     }
-
 
     public List<JerkSON> createJerkSONs(){
         List<JerkSON> jerkSONsList = new ArrayList<>();
@@ -24,7 +21,6 @@ public class RegExRunner {
             jerkSON.setName(name.label);
             jerkSONsList.add(jerkSON);
         }
-
 
         for(int i=0;i<kvPairsList.size();i++){
             //if name is null increment count of errors
@@ -67,7 +63,6 @@ public class RegExRunner {
 
         return jerkSONsList;
     }
-
 
 
     public String identifyName(String string){
@@ -123,6 +118,5 @@ public class RegExRunner {
 
         return stringList;
     }
-
 
 }

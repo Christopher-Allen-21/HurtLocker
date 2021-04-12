@@ -1,14 +1,9 @@
 import java.util.*;
 
 public class JerkSON {
-
     String name;
     Integer totalCount=0;
     Map<String,Integer> pricesCount = new HashMap<>();
-
-    public JerkSON(){
-
-    }
 
     public void incrementTotalCount(){
         totalCount++;
@@ -34,7 +29,6 @@ public class JerkSON {
         pricesCount.put(price,pricesCount.get(price)+1);
     }
 
-
     @Override
     public String toString(){
         StringBuilder sb =  new StringBuilder();
@@ -50,14 +44,12 @@ public class JerkSON {
                 sb.append("\n\nname: "+getName()+"\t\tseen: "+totalCount+" times").append("\n=============\t\t=============");
             }
             for(String p : pricesCount.keySet()){
-                sb.append("\nPrice: "+p+"\t\t\tseen: "+pricesCount.get(p));
+                sb.append("\nPrice: "+p+"\t\t\tseen: "+pricesCount.get(p)+" times");
             }
             sb.append("\n_____________\t\t_____________");
         }
 
         return sb.toString();
     }
-
-
 
 }
