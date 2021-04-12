@@ -61,6 +61,20 @@ public class RegExRunnerTest {
             System.out.print(rer.identifyName(keyValuePairs.get(i))+" ");
             System.out.println(rer.identifyPrice(keyValuePairs.get(i)));
         }
+        System.out.println(keyValuePairs.size());
+
+    }
+
+    @Test
+    public void createJerkSONs() throws Exception{
+        ClassLoader classLoader = getClass().getClassLoader();
+        String result = IOUtils.toString(classLoader.getResourceAsStream("RawData.txt"));
+        RegExRunner rer = new RegExRunner(result);
+
+        List<JerkSON> jerkSONList = rer.createJerkSONs();
+
+        System.out.println(jerkSONList);
+        System.out.println(jerkSONList.size());
 
     }
 

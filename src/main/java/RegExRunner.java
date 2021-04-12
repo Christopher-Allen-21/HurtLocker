@@ -19,8 +19,46 @@ public class RegExRunner {
         List<JerkSON> jerkSONsList = new ArrayList<>();
         List<String> kvPairsList = splitByKVPairs();
 
-        for(int i=0;i<kvPairsList.size();i++){
+        for(FoodName name : FoodName.values()) {
+            JerkSON jerkSON = new JerkSON();
+            jerkSON.setName(name.label);
+            jerkSONsList.add(jerkSON);
+        }
 
+
+        for(int i=0;i<kvPairsList.size();i++){
+            for(int j=0;j<jerkSONsList.size();j++){
+                //if name is null
+                if(identifyName(kvPairsList.get(i))==null){
+                    //increment count of errors
+                }
+                //identify which jerkSON to check against
+                else if(identifyName(kvPairsList.get(i)).equals(jerkSONsList.get(j).getName())){
+                    //if no prices add the price
+                    if(jerkSONsList.get(j).getPrices().size() == 0){
+                        jerkSONsList.get(j).addPrice(identifyPrice(kvPairsList.get(i)));
+                    }
+                    //check if price already exists
+                    else{
+                        List<String> prices = jerkSONsList.get(j).getPrices();
+                        boolean priceFound = false;
+                        for(String p : prices){
+                            if(p == null){
+                                //INCREMENT ERRORS SOMEHOW
+                            }
+                            //if price found increment count of times price was seen
+                            else if(p.equals(identifyPrice(kvPairsList.get(i)))){
+                                //increment count of that price somehow
+                                priceFound = true;
+                            }
+                        }
+                        //if price not found then add the price
+                        if(!priceFound){
+                            jerkSONsList.get(j).addPrice(identifyPrice(kvPairsList.get(i)));
+                        }
+                    }
+                }
+            }
         }
 
         return jerkSONsList;
@@ -28,13 +66,13 @@ public class RegExRunner {
 
 
 
-    public FoodName identifyName(String string){
+    public String identifyName(String string){
         for(FoodName name : FoodName.values()){
             Pattern pattern = Pattern.compile(name.label,Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(string);
             boolean matchFound = matcher.find();
             if(matchFound){
-                return name;
+                return name.label;
             }
         }
         return null;
