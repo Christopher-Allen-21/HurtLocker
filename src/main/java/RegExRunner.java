@@ -13,9 +13,13 @@ public class RegExRunner {
     }
 
 
-    //MAY NEED TO GO BACK AND IMPLEMENT OWN METHOD FOR SPLIT
     public List<String> splitByKVPairs(){
-        List<String> stringList = splitByDelim(string,"\\w+");
+//        String[] stringArr = string.split("##");
+//        List<String> stringList = Arrays.asList(stringArr);
+
+        List<String> stringList = splitByDelim(string,"\\##(.*?)\\##");
+        //List<String> stringList = splitByDelim(string,"([^##]*)");
+
         return stringList;
     }
 

@@ -18,6 +18,7 @@ public class RegExRunnerTest {
         for(int i=0;i<keyValuePairs.size();i++){
             System.out.println(keyValuePairs.get(i));
         }
+        System.out.println(keyValuePairs.size());
     }
 
 
