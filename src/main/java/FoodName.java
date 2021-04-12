@@ -1,9 +1,9 @@
 public enum FoodName{
-    MILK ("milk"),
-    BREAD ("bread"),
-    COOKIES("cookies"),
-    APPLES ("apples"),
-    ERRORS ("errors");
+    MILK ("Milk"),
+    BREAD ("Bread"),
+    COOKIES("Cookies"),
+    APPLES ("Apples"),
+    ERRORS ("Errors");
 
     public final String label;
     private FoodName(String label){

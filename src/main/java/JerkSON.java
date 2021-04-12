@@ -44,28 +44,21 @@ public class JerkSON {
     }
 
 
-
-//    @Override
-//    public String toString(){
-//        StringBuilder sb =  new StringBuilder();
-//
-//        sb.append("\n\nname: "+getName()+"\t\tseen: "+totalCount+" times").append("\n=============\t\t=============");
-//        for(String p : prices){
-//            sb.append("\nPrice: "+p);
-//        }
-//
-//        return sb.toString();
-//    }
-
     @Override
     public String toString(){
         StringBuilder sb =  new StringBuilder();
 
-        sb.append("\n\nname: "+getName()+"\t\tseen: "+totalCount+" times").append("\n=============\t\t=============");
-        for(String p : pricesCount.keySet()){
-            sb.append("\nPrice: "+p+"\t\tseen: "+pricesCount.get(p));
+        if(name.equals("Errors")){
+            sb.append("\n\n"+getName()+"\t\t\t\tseen: "+totalCount+" times");
         }
-        sb.append("\n_____________\t\t_____________");
+        else{
+            sb.append("\n\nname: "+getName()+"\t\tseen: "+totalCount+" times").append("\n=============\t\t=============");
+            for(String p : pricesCount.keySet()){
+                sb.append("\nPrice: "+p+"\t\t\tseen: "+pricesCount.get(p));
+            }
+            sb.append("\n_____________\t\t_____________");
+        }
+
 
         return sb.toString();
     }
