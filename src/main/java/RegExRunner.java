@@ -27,19 +27,26 @@ public class RegExRunner {
 
 
         for(int i=0;i<kvPairsList.size();i++){
+            //if name is null
+            if(identifyName(kvPairsList.get(i))==null){
+                //INCREMENT COUNT OF ERRORS
+                jerkSONsList.get(4).incrementTotalCount();
+            }
             for(int j=0;j<jerkSONsList.size();j++){
-                //if name is null
-                if(identifyName(kvPairsList.get(i))==null){
-                    //increment count of errors
-                }
+
                 //identify which jerkSON to check against
-                else if(identifyName(kvPairsList.get(i)).equals(jerkSONsList.get(j).getName())){
+                if(identifyName(kvPairsList.get(i))!=null && identifyName(kvPairsList.get(i)).equals(jerkSONsList.get(j).getName())){
+                    if(identifyPrice(kvPairsList.get(i))==null){
+                        jerkSONsList.get(4).incrementTotalCount();
+                    }
                     //if no prices add the price
-                    if(jerkSONsList.get(j).getPrices().size() == 0){
+                    else if(jerkSONsList.get(j).getPrices().size() == 0){
                         jerkSONsList.get(j).addPrice(identifyPrice(kvPairsList.get(i)));
+                        jerkSONsList.get(j).incrementTotalCount();
                     }
                     //check if price already exists
                     else{
+                        jerkSONsList.get(j).incrementTotalCount();
                         List<String> prices = jerkSONsList.get(j).getPrices();
                         boolean priceFound = false;
                         for(String p : prices){
@@ -75,7 +82,20 @@ public class RegExRunner {
                 return name.label;
             }
         }
+        if(checkCo0kieS(string)){
+            return FoodName.COOKIES.label;
+        }
         return null;
+    }
+
+    public boolean checkCo0kieS(String string){
+        Pattern pattern = Pattern.compile("Co0kieS",Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(string);
+        boolean matchFound = matcher.find();
+        if(matchFound){
+            return true;
+        }
+        return false;
     }
 
     public String identifyPrice(String string){
@@ -90,11 +110,7 @@ public class RegExRunner {
 
 
     public List<String> splitByKVPairs(){
-//      String[] stringArr = string.split("##");
-//      List<String> kvPairsList = Arrays.asList(stringArr);
-
         List<String> kvPairsList = splitByDelim(string,"(.*?)\\##");
-
         return kvPairsList;
     }
 

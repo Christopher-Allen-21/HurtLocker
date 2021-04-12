@@ -74,7 +74,6 @@ public class RegExRunnerTest {
         List<JerkSON> jerkSONList = rer.createJerkSONs();
 
         System.out.println(jerkSONList);
-        System.out.println(jerkSONList.size());
 
     }
 
